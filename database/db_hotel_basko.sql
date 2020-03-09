@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 03 Mar 2020 pada 23.34
+-- Generation Time: 09 Mar 2020 pada 20.22
 -- Versi Server: 5.6.37
 -- PHP Version: 5.6.31
 
@@ -33,7 +33,15 @@ CREATE TABLE IF NOT EXISTS `tb_Kamar` (
   `kamar_harga` int(11) NOT NULL,
   `kamar_fasilitas` text NOT NULL,
   `kamar_status` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tb_Kamar`
+--
+
+INSERT INTO `tb_Kamar` (`kamar_id`, `tipe_kamar_id`, `kamar_no`, `kamar_harga`, `kamar_fasilitas`, `kamar_status`) VALUES
+(1, 4, 2, 76, 'Quia qui beatae qui ', 'Ada'),
+(3, 4, 13, 4, 'Magna in consequatur', 'Tersedia');
 
 -- --------------------------------------------------------
 
@@ -62,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `tb_Pengguna` (
   `pengguna_password` varchar(255) NOT NULL,
   `pengguna_nama` varchar(255) NOT NULL,
   `pengguna_telp` varchar(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tb_Pengguna`
@@ -70,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `tb_Pengguna` (
 
 INSERT INTO `tb_Pengguna` (`pengguna_id`, `pengguna_username`, `pengguna_password`, `pengguna_nama`, `pengguna_telp`) VALUES
 (1, 'admin', 'admin', 'admin', '0819629431'),
-(6, 'qazicenody', 'Pa$$w0rd!', 'Laboriosam aut quo ', '47');
+(2, 'muxad', 'Pa$$w0rd!', 'Praesentium ullamco ', '93');
 
 -- --------------------------------------------------------
 
@@ -98,15 +106,15 @@ CREATE TABLE IF NOT EXISTS `tb_Reservasi` (
 CREATE TABLE IF NOT EXISTS `tb_Tipe_kamar` (
   `tipe_kamar_id` int(11) NOT NULL,
   `tipe_kamar_nama` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tb_Tipe_kamar`
 --
 
 INSERT INTO `tb_Tipe_kamar` (`tipe_kamar_id`, `tipe_kamar_nama`) VALUES
-(1, 'Autem iure quidem du'),
-(2, 'Perferendis velit ad');
+(3, 'Irure rem consequunt'),
+(4, 'Aut id totam blandi');
 
 --
 -- Indexes for dumped tables
@@ -144,12 +152,12 @@ ALTER TABLE `tb_Tipe_kamar`
 -- AUTO_INCREMENT for table `tb_Kamar`
 --
 ALTER TABLE `tb_Kamar`
-  MODIFY `kamar_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `kamar_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tb_Pengguna`
 --
 ALTER TABLE `tb_Pengguna`
-  MODIFY `pengguna_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `pengguna_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tb_Reservasi`
 --
@@ -159,7 +167,7 @@ ALTER TABLE `tb_Reservasi`
 -- AUTO_INCREMENT for table `tb_Tipe_kamar`
 --
 ALTER TABLE `tb_Tipe_kamar`
-  MODIFY `tipe_kamar_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `tipe_kamar_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -16,13 +16,13 @@
                     <a class="nav-link" href="index.php?page=module/Tipe/index">Tipe Kamar</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php?page=module/Penyakit/index">Kamar</a>
+                    <a class="nav-link" href="index.php?page=module/Kamar/index">Kamar</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php?page=module/Penyakit/index">Pemesanan</a>
+                    <a class="nav-link" href="index.php?page=module/Pemesanan/index">Pemesanan</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php?page=module/Penyakit/index">Kamar Kosong</a>
+                    <a class="nav-link" href="index.php?page=module/KamarKosong/index">Kamar Kosong</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?page=module/Logout/index">Logout</a>

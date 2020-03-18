@@ -122,6 +122,14 @@ class Db extends Conf
         $query = $this->get("SELECT * FROM tb_Kamar LEFT JOIN tb_Tipe_kamar ON tb_Kamar.tipe_kamar_id = tb_Tipe_kamar.tipe_kamar_id");
         return $query;
     }
+    public function getAllBooking()
+    {
+        $query = $this->get("   SELECT * FROM tb_Kamar 
+                                LEFT JOIN tb_Tipe_kamar 
+                                ON tb_Kamar.tipe_kamar_id = tb_Tipe_kamar.tipe_kamar_id
+                                WHERE tb_Kamar.kamar_status = 'Tersedia' ");
+        return $query;
+    }
 
     public function addKamar($data)
     {
@@ -189,4 +197,96 @@ class Db extends Conf
 
         return $conn->affected_rows;
     }
+
+    // Reservasi CRUD
+    public function getAllReservasi()
+    {
+        $query = $this->get("   SELECT * FROM tb_Reservasi 
+                                LEFT JOIN tb_Kamar 
+                                ON tb_Reservasi.kamar_id=tb_Kamar.kamar_id
+                                LEFT JOIN tb_Tipe_kamar 
+                                ON tb_Tipe_kamar.tipe_kamar_id=tb_Kamar.tipe_kamar_id");
+        return $query;
+    }
+
+    public function addReservasi($data)
+    {
+        global $conn;
+        $kamar    = $data['kamar'];
+        $checkin  = $data['checkin'];
+        $checkout = $data['checkout'];
+        $nama     = $data['nama'];
+        $telp     = $data['telp'];
+        $alamat   = $data['alamat'];
+        $status   = "Booking";
+
+        $queryReservasi = "INSERT INTO `tb_Reservasi`(   `kamar_id`, 
+                                                `reservasi_nama`, 
+                                                `reservasi_tlp`, 
+                                                `reservasi_alamat`, 
+                                                `reservasi_masuk`, 
+                                                `reservasi_keluar`, 
+                                                `reservasi_status`) 
+                                                VALUES (
+                                                '$kamar',
+                                                '$nama',
+                                                '$telp',
+                                                '$alamat',
+                                                '$checkin',
+                                                '$checkout',
+                                                '$status'
+                                                )";
+
+        $queryKamar = "UPDATE `tb_Kamar` SET `kamar_status`= 'Berisi' WHERE `kamar_id`='$kamar'";
+        $conn->query($queryKamar);
+        $conn->query($queryReservasi);
+        // echo $queryKamar . "<br>";
+        // echo $queryReservasi . "<br>";
+        // exit;
+        return $conn->affected_rows;
+    }
+
+    public function dReservasi($id)
+    {
+        global $conn;
+        $query = "DELETE FROM tb_Reservasi WHERE reservasi_id = '$id'";
+        $conn->query($query);
+
+        return $conn->affected_rows;
+    }
+
+    public function getOneReservasi($id)
+    {
+        $query = $this->get("   SELECT * FROM tb_Reservasi 
+                                LEFT JOIN tb_Kamar ON tb_Reservasi.kamar_id=tb_Kamar.kamar_id 
+                                LEFT JOIN tb_Tipe_kamar ON tb_Kamar.tipe_kamar_id=tb_Tipe_kamar.tipe_kamar_id 
+                                WHERE reservasi_id = '$id'")[0];
+        return $query;
+    }
+
+    // public function uKamar($data)
+    // {
+    //     global $conn;
+
+    //     $id        = $data['id'];
+    //     $tipe      = $data['tipe'];
+    //     $nomor     = $data['nomor'];
+    //     $harga     = $data['harga'];
+    //     $fasilitas = $data['fasilitas'];
+    //     $status    = $data['status'];
+
+
+    //     $query = "UPDATE `tb_Kamar` SET `tipe_kamar_id`='$tipe',
+    //                                     `kamar_no`='$nomor',
+    //                                     `kamar_harga`='$harga',
+    //                                     `kamar_fasilitas`='$fasilitas',
+    //                                     `kamar_status`='$status' 
+    //                                     WHERE 
+    //                                     `kamar_id`='$id'";
+    //     // echo $query;
+    //     // exit;
+    //     $conn->query($query);
+
+    //     return $conn->affected_rows;
+    // }
 }

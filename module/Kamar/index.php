@@ -15,6 +15,7 @@
                             <th>Tipe Kamar</th>
                             <th>Nomor Kamar</th>
                             <th>Harga Kamar</th>
+                            <th>Status</th>
                             <th>Fasilitas Kamar</th>
                             <th width="131px">Aksi</th>
                         </tr>
@@ -29,6 +30,7 @@
                                 <td><?= $dataKamar->tipe_kamar_nama ?></td>
                                 <td><?= $dataKamar->kamar_no ?></td>
                                 <td>Rp. <?= number_format($dataKamar->kamar_harga) ?></td>
+                                <td><?= $dataKamar->kamar_status ?></td>
                                 <td><?= $dataKamar->kamar_fasilitas ?></td>
                                 <td>
                                     <a href="index.php?page=module/Kamar/edit&id=<?= $dataKamar->kamar_id ?>" class="btn btn-warning btn-sm">Edit</a>

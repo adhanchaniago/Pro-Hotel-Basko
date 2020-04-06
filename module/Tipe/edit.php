@@ -3,12 +3,10 @@ if (isset($_POST["edit"])) {
     if ($db->uTipeKamar($_POST) > 0) {
         echo "
         <script>
-        alert('Data Berhasil Di Edit');
         document.location.href = 'index.php?page=module/Tipe/index';
         </script>";
     } else {
         echo "<script>
-        alert('Data Gagal Di Edit');
         document.location.href = 'index.php?page=module/Tipe/index';
         </script>";
     }

@@ -3,12 +3,10 @@ if (isset($_POST["edit"])) {
     if ($db->uPengguna($_POST) > 0) {
         echo "
         <script>
-        alert('Data Berhasil Di Edit');
         document.location.href = 'index.php?page=module/Pengguna/index';
         </script>";
     } else {
         echo "<script>
-        alert('Data Gagal Di Edit');
         document.location.href = 'index.php?page=module/Pengguna/index';
         </script>";
     }

@@ -3,12 +3,10 @@ if (isset($_POST["simpan"])) {
     if ($db->addPengguna($_POST) > 0) {
         echo "
         <script>
-        alert('Data Berhasil Ditambah');
         document.location.href = 'index.php?page=module/Pengguna/index';
         </script>";
     } else {
         echo "<script>
-        alert('Data Gagal Ditambah');
         document.location.href = 'index.php?page=module/Pengguna/index';
         </script>";
     }

@@ -4,7 +4,6 @@ if ($db->dKamar($id) > 0) {
     echo
         "
         <script>
-            alert('Data telah dihapus');
             document.location.href = 'index.php?page=module/Kamar/index';
         </script>
         ";
@@ -12,7 +11,6 @@ if ($db->dKamar($id) > 0) {
     echo
         "
         <script>
-            alert('Data gagal dihapus');
             document.location.href = 'index.php?page=module/Kamar/index';
         </script>
         ";

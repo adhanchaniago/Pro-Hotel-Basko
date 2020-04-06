@@ -22,7 +22,7 @@
                     <a class="nav-link" href="index.php?page=module/Reservasi/index">Pemesanan</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php?page=module/KamarKosong/index">Kamar Kosong</a>
+                    <a class="nav-link" href="index.php?page=module/Kamar/kamar_kosong">Kamar Kosong</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?page=module/Logout/index">Logout</a>

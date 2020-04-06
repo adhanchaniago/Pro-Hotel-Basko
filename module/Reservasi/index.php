@@ -1,3 +1,15 @@
+<?php
+// if ($db->prosesCheckin($_POST) > 0) {
+//     echo "
+//     <script>
+//     document.location.href = 'index.php?page=module/Reservasi/index';
+//     </script>";
+// } else {
+//     echo "<script>
+//     document.location.href = 'index.php?page=module/Reservasi/index';
+//     </script>";
+// }
+?>
 <div class="container">
 
     <div class="row">
@@ -13,13 +25,11 @@
                         <tr>
                             <th width="10px">No</th>
                             <th>Nama Tamu</th>
-                            <th>Telp.</th>
-                            <th>Alamat</th>
                             <th>Tanggal Checkin</th>
                             <th>Tanggal Checkout</th>
-                            <!-- <th>Status</th> -->
+                            <th>Status</th>
                             <th>No Kamar</th>
-                            <!-- <th>Tipe Kamar</th> -->
+                            <th>Tipe Kamar</th>
                             <th width="">Aksi</th>
                         </tr>
                     </thead>
@@ -30,18 +40,33 @@
                         ?>
                             <tr>
                                 <td><?= ++$no ?></td>
-                                <td><?= $dataReservasi->reservasi_nama ?></td>
-                                <td><?= $dataReservasi->reservasi_tlp ?></td>
-                                <td><?= $dataReservasi->reservasi_alamat ?></td>
-                                <td><?= TglIndo($dataReservasi->reservasi_masuk) ?></td>
-                                <td><?= TglIndo($dataReservasi->reservasi_keluar) ?></td>
-                                <!-- <td><?= $dataReservasi->reservasi_status ?></td> -->
-                                <td><?= $dataReservasi->kamar_no ?></td>
-                                <!-- <td><?= $dataReservasi->tipe_kamar_nama ?></td> -->
                                 <td>
-                                    <a href="index.php?page=module/Reservasi/checkout&id=<?= $dataReservasi->reservasi_id ?>" class="btn btn-success btn-sm">Checkout</a>
-                                    <a href="index.php?page=module/Reservasi/perpanjang&id=<?= $dataReservasi->reservasi_id ?>" class="btn btn-info btn-sm">Perpanjang</a>
-                                    <a href="index.php?page=module/Reservasi/hapus&id=<?= $dataReservasi->reservasi_id ?>" class="btn btn-danger btn-sm">Hapus</a>
+                                    <b>
+                                        <a href="index.php?page=module/Reservasi/detail&id=<?= $dataReservasi->reservasi_id ?>"><?= $dataReservasi->reservasi_nama ?></a>
+                                    </b>
+                                </td>
+                                <td><b class="text-success"><?= TglIndo($dataReservasi->reservasi_masuk) ?></b></td>
+                                <td><b class="text-danger"><?= TglIndo($dataReservasi->reservasi_keluar) ?></b></td>
+                                <td><b class="text-info"><?= $dataReservasi->reservasi_status ?></b></td>
+                                <td><a href="index.php?page=module/Kamar/index"><?= $dataReservasi->kamar_no ?></a></td>
+                                <td><a href="index.php?page=module/Kamar/index"><?= $dataReservasi->tipe_kamar_nama ?></a></td>
+                                <td>
+                                    <a href="index.php?page=module/Reservasi/detail&id=<?= $dataReservasi->reservasi_id ?>" class="btn btn-primary btn-sm">Detail</a>
+
+                                    <a onclick="return confirm('Anda yakin hapus ?')" href="index.php?page=module/Reservasi/hapus&id=<?= $dataReservasi->reservasi_id ?>" class="btn btn-danger btn-sm">Hapus</a>
+
+                                    <?php
+                                    if ($dataReservasi->reservasi_status == "Booking") :   ?>
+
+                                        <a href="index.php?page=module/Reservasi/checkin&id=<?= $dataReservasi->reservasi_id ?>" class="btn btn-success btn-sm">Checkin</a>
+
+                                    <?php elseif ($dataReservasi->reservasi_status == "Checkin") : ?>
+
+                                        <a href="index.php?page=module/Reservasi/checkout&id=<?= $dataReservasi->reservasi_id ?>" class="btn btn-success btn-sm">Checkout</a>
+
+                                        <a href="index.php?page=module/Reservasi/perpanjang&id=<?= $dataReservasi->reservasi_id ?>" class="btn btn-info btn-sm">Perpanjang</a>
+
+                                    <?php endif ?>
                                 </td>
                             </tr>
                         <?php }  ?>

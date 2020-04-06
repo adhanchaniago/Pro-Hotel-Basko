@@ -3,12 +3,10 @@ if (isset($_POST["simpan"])) {
     if ($db->addReservasi($_POST) > 0) {
         echo "
         <script>
-        alert('Data Berhasil Ditambah');
         document.location.href = 'index.php?page=module/Reservasi/index';
         </script>";
     } else {
         echo "<script>
-        alert('Data Gagal Ditambah');
         document.location.href = 'index.php?page=module/Reservasi/index';
         </script>";
     }
@@ -29,7 +27,7 @@ $dataTipes = $db->getAllTipeKamar();
                     <div class="form-label-group">
                         <label>Kamar</label>
                         <select style="widows: 50%" name="kamar" class="form-control">
-                            <?php foreach ($db->getAllBooking() as $dataKamar) : var_dump($dataKamar); ?>
+                            <?php foreach ($db->getAllKamarTersedia() as $dataKamar) : var_dump($dataKamar); ?>
                                 <option value="<?php echo $dataKamar->kamar_id ?>"><?php echo $dataKamar->kamar_no ?> - <?php echo $dataKamar->tipe_kamar_nama ?></option>
                             <?php endforeach ?>
                         </select>
@@ -38,7 +36,7 @@ $dataTipes = $db->getAllTipeKamar();
                 <div class="form-group">
                     <div class="form-label-group">
                         <label>Tanggal Checkin</label>
-                        <input onchange="tampil()" class="form-control" type="date" id="start" name="checkin" value="<?php echo date('Y-m-d') ?>" min="<?php echo date('Y-m-d') ?>" max="">
+                        <input required onchange="tampil()" class="form-control" type="date" id="start" name="checkin" value="<?php echo date('Y-m-d') ?>" min="<?php echo date('Y-m-d') ?>" max="">
                     </div>
                 </div>
                 <?php // echo date('Y-m-d', strtotime('+1 days', strtotime(date('Y-m-d')))) 
@@ -46,7 +44,7 @@ $dataTipes = $db->getAllTipeKamar();
                 <div class="form-group">
                     <div class="form-label-group">
                         <label>Tanggal Checkout</label>
-                        <input value="<?php echo date('Y-m-d', strtotime('+1 days', strtotime(date('Y-m-d')))) ?>" class="form-control" type="date" id="finish" name="checkout" name="out" value="" min="">
+                        <input required value="<?php echo date('Y-m-d', strtotime('+1 days', strtotime(date('Y-m-d')))) ?>" class="form-control" type="date" id="finish" name="checkout" name="out" value="" min="">
                         <script>
                             function tampil() {
                                 var masuk = document.getElementById('start').value;
@@ -59,13 +57,13 @@ $dataTipes = $db->getAllTipeKamar();
                 <div class="form-group">
                     <div class="form-label-group">
                         <label>Nama Tamu</label>
-                        <input name="nama" type="text" class="form-control">
+                        <input required name="nama" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="form-label-group">
                         <label>Nomor Telp.</label>
-                        <input name="telp" type="number" class="form-control">
+                        <input required name="telp" type="number" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">

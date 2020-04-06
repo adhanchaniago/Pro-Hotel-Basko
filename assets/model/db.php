@@ -119,15 +119,15 @@ class Db extends Conf
     // Kamar CRUD
     public function getAllKamar()
     {
-        $query = $this->get("SELECT * FROM tb_Kamar LEFT JOIN tb_Tipe_kamar ON tb_Kamar.tipe_kamar_id = tb_Tipe_kamar.tipe_kamar_id");
+        $query = $this->get("SELECT * FROM tb_Kamar LEFT JOIN tb_Tipe_kamar ON tb_Kamar.tipe_kamar_id = tb_Tipe_kamar.tipe_kamar_id ");
         return $query;
     }
-    public function getAllBooking()
+    public function getAllKamarTersedia()
     {
         $query = $this->get("   SELECT * FROM tb_Kamar 
                                 LEFT JOIN tb_Tipe_kamar 
                                 ON tb_Kamar.tipe_kamar_id = tb_Tipe_kamar.tipe_kamar_id
-                                WHERE tb_Kamar.kamar_status = 'Tersedia' ");
+                                WHERE tb_Kamar.kamar_status = 'Tersedia' ORDER BY tb_Tipe_kamar.tipe_kamar_nama ASC ");
         return $query;
     }
 
@@ -258,35 +258,85 @@ class Db extends Conf
     public function getOneReservasi($id)
     {
         $query = $this->get("   SELECT * FROM tb_Reservasi 
-                                LEFT JOIN tb_Kamar ON tb_Reservasi.kamar_id=tb_Kamar.kamar_id 
-                                LEFT JOIN tb_Tipe_kamar ON tb_Kamar.tipe_kamar_id=tb_Tipe_kamar.tipe_kamar_id 
-                                WHERE reservasi_id = '$id'")[0];
+                                    LEFT JOIN tb_Kamar ON tb_Reservasi.kamar_id=tb_Kamar.kamar_id 
+                                    LEFT JOIN tb_Tipe_kamar ON tb_Kamar.tipe_kamar_id=tb_Tipe_kamar.tipe_kamar_id 
+                                    WHERE reservasi_id = '$id'")[0];
         return $query;
     }
 
-    // public function uKamar($data)
-    // {
-    //     global $conn;
+    public function prosesCheckout($data)
+    {
+        global $conn;
 
-    //     $id        = $data['id'];
-    //     $tipe      = $data['tipe'];
-    //     $nomor     = $data['nomor'];
-    //     $harga     = $data['harga'];
-    //     $fasilitas = $data['fasilitas'];
-    //     $status    = $data['status'];
+        $id           = $data['id'];
+        $checkout     = $data['checkout'];
+        $total_bayar  = $data['total_bayar'];
+        $uang_bayar   = $data['uang_bayar'];
+        $uang_kembali = $data['uang_kembali'];
 
+        $ambil_kamar = $this->getOneReservasi($id);
+        $pilih_kamar = $ambil_kamar->kamar_id;
 
-    //     $query = "UPDATE `tb_Kamar` SET `tipe_kamar_id`='$tipe',
-    //                                     `kamar_no`='$nomor',
-    //                                     `kamar_harga`='$harga',
-    //                                     `kamar_fasilitas`='$fasilitas',
-    //                                     `kamar_status`='$status' 
-    //                                     WHERE 
-    //                                     `kamar_id`='$id'";
-    //     // echo $query;
-    //     // exit;
-    //     $conn->query($query);
+        $query_update_status_kamar = "  UPDATE `tb_Kamar`
+                                            SET kamar_status = 'Tersedia'
+                                            WHERE kamar_id = '$pilih_kamar'
+                                        ";
 
-    //     return $conn->affected_rows;
-    // }
+        $query_tambah_pembayaran = "INSERT INTO `tb_Pembayaran` ( `reservasi_id`,
+                                                    `pembayaran_tgl`,
+                                                    `pembayaran_nominal`,
+                                                    `pembayaran_uang_bayar`,
+                                                    `pembayaran_kembalian`
+                                                    ) VALUES
+                                                    ('$id',
+                                                    '$checkout',
+                                                    '$total_bayar',
+                                                    '$uang_bayar',
+                                                    '$uang_kembali')";
+
+        $query_update_status_reservasi = "  UPDATE `tb_Reservasi`
+                                                SET reservasi_status = 'Selesai'
+                                                WHERE reservasi_id = '$id'
+                                                ";
+
+        $conn->query($query_update_status_kamar);
+        $conn->query($query_update_status_reservasi);
+        $conn->query($query_tambah_pembayaran);
+
+        return $conn->affected_rows;
+    }
+
+    public function prosesPerpanjang($data)
+    {
+        global $conn;
+
+        $id           = $data['id'];
+        $checkout     = $data['checkout'];
+
+        $query_update_checkout_reservasi = "    UPDATE `tb_Reservasi`
+                                                    SET reservasi_keluar = '$checkout'
+                                                    WHERE reservasi_id = '$id'
+                                                    ";
+
+        $conn->query($query_update_checkout_reservasi);
+
+        return $conn->affected_rows;
+    }
+
+    public function prosesCheckin($data)
+    {
+        global $conn;
+
+        $id           = $data['id'];
+
+        $query_update_status_reservasi = "  UPDATE `tb_Reservasi`
+                                                SET reservasi_status = 'Checkin'
+                                                WHERE reservasi_id = '$id'
+                                                ";
+        // echo $query_update_status_reservasi;
+        // exit;
+        $conn->query($query_update_status_reservasi);
+
+        return $conn->affected_rows;
+    }
 }

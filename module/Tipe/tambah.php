@@ -3,12 +3,10 @@ if (isset($_POST["simpan"])) {
     if ($db->addTipeKamar($_POST) > 0) {
         echo "
         <script>
-        alert('Data Berhasil Ditambah');
         document.location.href = 'index.php?page=module/Tipe/index';
         </script>";
     } else {
         echo "<script>
-        alert('Data Gagal Ditambah');
         document.location.href = 'index.php?page=module/Tipe/index';
         </script>";
     }

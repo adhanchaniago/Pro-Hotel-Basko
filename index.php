@@ -2,12 +2,7 @@
 include 'assets/model/db.php';
 include 'assets/libs/helper/helper.php';
 $db = new Db();
-// session_start();
-// if (empty($_SESSION['akun'])) {
-//   echo "
-//   <script>alert('Anda harus login terlebih dahulu');location=''</script>
-//   ";
-// }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

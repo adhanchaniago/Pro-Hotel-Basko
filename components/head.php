@@ -9,3 +9,5 @@
 
 <!-- Custom styles for this template -->
 <link href="assets/css/business-frontpage.css" rel="stylesheet">
+
+<link href="assets/dataTables/dataTables.css" rel="stylesheet">

@@ -25,6 +25,9 @@
                     <a class="nav-link" href="index.php?page=module/Kamar/kamar_kosong">Kamar Kosong</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="index.php?page=module/Laporan/index">Laporan</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="index.php?page=module/Logout/index">Logout</a>
                 </li>
             </ul>

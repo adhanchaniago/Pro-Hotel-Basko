@@ -42,6 +42,16 @@ if (isset($_POST["simpan"])) {
                 </div>
                 <div class="form-group">
                     <div class="form-label-group">
+                        <label>Level</label>
+                        <select name="level" id="level" class="form-control">
+                            <option value="1">Admin</option>
+                            <option value="2">Frontline</option>
+                            <option value="3">Pimpinan</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
                         <label>Telp.</label>
                         <input name="telp" type="number" class="form-control">
                     </div>

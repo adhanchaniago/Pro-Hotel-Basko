@@ -19,8 +19,19 @@ class Db extends Conf
         $password = $data['password'];
         $nama     = $data['nama'];
         $telp     = $data['telp'];
+        $level    = $data['level'];
 
-        $query = "INSERT INTO tb_Pengguna VALUES ('','$username', '$password', '$nama', '$telp')";
+        $query = "INSERT INTO tb_Pengguna ( pengguna_username,
+                                            pengguna_password,
+                                            pengguna_nama,
+                                            pengguna_telp,
+                                            pengguna_level) 
+                                            VALUES (
+                                                '$username', 
+                                                '$password', 
+                                                '$nama', 
+                                                '$telp', 
+                                                '$level')";
         $conn->query($query);
         // echo $query;
         // exit;
@@ -51,19 +62,22 @@ class Db extends Conf
         $password = $data['password'];
         $nama     = $data['nama'];
         $telp     = $data['telp'];
+        $level    = $data['level'];
 
-        $query = "UPDATE `tb_Pengguna` SET  `Pengguna_username`   = '$username',
-                                            `Pengguna_password`   = '$password',
-                                            `Pengguna_nama`       = '$nama',
-                                            `Pengguna_telp`       = '$telp'
+        $query = "UPDATE `tb_Pengguna` SET  `pengguna_username` = '$username',
+                                            `pengguna_password` = '$password',
+                                            `pengguna_nama`     = '$nama',
+                                            `pengguna_telp`     = '$telp'
+                                            `pengguna_level`    = '$level'
                                             WHERE 
-                                            `Pengguna_id`         = '$id'";
+                                            `pengguna_id`         = '$id'";
         // echo $query;
         // exit;
         $conn->query($query);
 
         return $conn->affected_rows;
     }
+    
     // Tipe Kamar CRUD
     public function getAllTipeKamar()
     {

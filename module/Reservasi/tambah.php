@@ -12,6 +12,7 @@ if (isset($_POST["simpan"])) {
     }
 }
 $dataTipes = $db->getAllTipeKamar();
+$id_kamar = $_GET['id'];
 ?>
 
 
@@ -26,10 +27,18 @@ $dataTipes = $db->getAllTipeKamar();
                 <div class="form-group">
                     <div class="form-label-group">
                         <label>Kamar</label>
-                        <select style="widows: 50%" name="kamar" class="form-control">
+                        <select style="widows: 50%" name="kamar" id="kamar" class="form-control">
                             <?php foreach ($db->getAllKamarTersedia() as $dataKamar) : var_dump($dataKamar); ?>
                                 <option value="<?php echo $dataKamar->kamar_id ?>"><?php echo $dataKamar->kamar_no ?> - <?php echo $dataKamar->tipe_kamar_nama ?></option>
                             <?php endforeach ?>
+                            <?php
+                            if (isset($id_kamar)) {
+                                echo "<script>
+                                let kamar = document.getElementById('kamar').value =  $id_kamar;
+                            </script>";
+                            }
+                            ?>
+
                         </select>
                     </div>
                 </div>

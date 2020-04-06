@@ -29,7 +29,7 @@
                                 <td>Rp. <?= number_format($dataKamar->kamar_harga) ?></td>
                                 <td><?= $dataKamar->kamar_status ?></td>
                                 <td>
-                                    <a href="index.php?page=module/Kamar/edit&id=<?= $dataKamar->kamar_id ?>" class="btn btn-primary btn-sm">Booking</a>
+                                    <a href="index.php?page=module/Reservasi/tambah&id=<?= $dataKamar->kamar_id ?>" class="btn btn-primary btn-sm">Booking</a>
                                 </td>
                             </tr>
                         <?php }  ?>

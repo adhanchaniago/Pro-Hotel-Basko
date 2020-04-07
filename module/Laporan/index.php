@@ -27,10 +27,10 @@ if (isset($_POST["simpan"])) {
                         <div class="form-group">
                             <div class="form-label-group">
                                 <label>Laporan Perhari</label>
-                                <input name="username" type="text" class="form-control" autofocus="autofocus">
+                                <input name="hari" value="<?php echo date('Y-m-d') ?>" type="date" class="form-control">
                             </div>
                         </div>
-                        <button name="simpan" class="btn btn-success">Simpan</button>
+                        <button name="cetakHari" class="btn btn-success">Cetak</button>
                     </form>
                 </div>
                 <div class="col-md-4">
@@ -38,10 +38,10 @@ if (isset($_POST["simpan"])) {
                         <div class="form-group">
                             <div class="form-label-group">
                                 <label>Laporan Perbulan</label>
-                                <input name="username" type="text" class="form-control" autofocus="autofocus">
+                                <input name="bulan" value="<?php echo date('Y-m') ?>" type="month" class="form-control">
                             </div>
                         </div>
-                        <button name="simpan" class="btn btn-success">Simpan</button>
+                        <button name="cetakBulan" class="btn btn-success">Cetak</button>
                     </form>
                 </div>
                 <div class="col-md-4">
@@ -49,10 +49,16 @@ if (isset($_POST["simpan"])) {
                         <div class="form-group">
                             <div class="form-label-group">
                                 <label>Laporan Pertahun</label>
-                                <input name="username" type="text" class="form-control" autofocus="autofocus">
+                                <select name="tahun" class="form-control">
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020" selected>2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                </select>
                             </div>
                         </div>
-                        <button name="simpan" class="btn btn-success">Simpan</button>
+                        <button name="cetakTahun" class="btn btn-success">Cetak</button>
                     </form>
                 </div>
             </div>

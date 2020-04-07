@@ -77,7 +77,7 @@ class Db extends Conf
 
         return $conn->affected_rows;
     }
-    
+
     // Tipe Kamar CRUD
     public function getAllTipeKamar()
     {
@@ -264,7 +264,15 @@ class Db extends Conf
     {
         global $conn;
         $query = "DELETE FROM tb_Reservasi WHERE reservasi_id = '$id'";
+        $ambil_kamar = $this->getOneReservasi($id);
+        $pilih_kamar = $ambil_kamar->kamar_id;
+
+        $query_update_status_kamar = "  UPDATE `tb_Kamar`
+                                        SET kamar_status = 'Tersedia'
+                                        WHERE kamar_id = '$pilih_kamar'
+                                    ";
         $conn->query($query);
+        $conn->query($query_update_status_kamar);
 
         return $conn->affected_rows;
     }

@@ -96,6 +96,9 @@ $dataReservasi = $db->getOneReservasi($id);
                                 $out   = new DateTime($dataReservasi->reservasi_keluar);
                                 $diff    = $out->diff($in);
                                 $hasil = $diff->d;
+                                if ($hasil == 0) {
+                                    $hasil = 1;
+                                }
                                 $totalBayar = $hasil * $dataReservasi->kamar_harga;
                                 ?>
                                 <input required value="<?php echo rupiah($totalBayar)  ?>" id="tBayar" name="" type="text" class="form-control" readonly>

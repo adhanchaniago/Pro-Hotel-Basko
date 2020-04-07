@@ -72,7 +72,7 @@ $dataReservasi = $db->getOneReservasi($id);
                         <div class="form-group">
                             <div class="form-label-group">
                                 <label>Tanggal Ceckout</label>
-                                <input required value="<?php echo $dataReservasi->reservasi_keluar ?>" name="checkout" type="date" class="form-control">
+                                <input required value="<?php echo $dataReservasi->reservasi_keluar ?>" name="checkout" min="<?php echo date('Y-m-d', strtotime($Date . ' + 1 day')) ?>" type="date" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">

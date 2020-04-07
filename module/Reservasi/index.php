@@ -1,15 +1,3 @@
-<?php
-// if ($db->prosesCheckin($_POST) > 0) {
-//     echo "
-//     <script>
-//     document.location.href = 'index.php?page=module/Reservasi/index';
-//     </script>";
-// } else {
-//     echo "<script>
-//     document.location.href = 'index.php?page=module/Reservasi/index';
-//     </script>";
-// }
-?>
 <div class="container">
 
     <div class="row">
@@ -30,7 +18,7 @@
                             <th>Status</th>
                             <th>No Kamar</th>
                             <th>Tipe Kamar</th>
-                            <th width="">Aksi</th>
+                            <th width="280px">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>

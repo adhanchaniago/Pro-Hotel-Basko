@@ -52,11 +52,12 @@ CREATE TABLE `tb_Pengguna` (
   `pengguna_telp` varchar(20) NOT NULL,
   `pengguna_level` varchar(20) NOT NULL,
   PRIMARY KEY (`pengguna_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 INSERT INTO `tb_Pengguna` (`pengguna_id`, `pengguna_username`, `pengguna_password`, `pengguna_nama`, `pengguna_telp`, `pengguna_level`) VALUES
-(1,	'admin',	'admin',	'admin',	'0819629431',	'1'),
-(4,	'kujylago',	'Pa$$w0rd!',	'Quaerat magni mollit',	'96',	'1')
+(1,	'Admin',	'Admin',	'Admin',	'0819629431',	'Admin'),
+(4,	'Pimpinan',	'Pimpinan',	'Pimpinan',	'96',	'Pimpinan'),
+(6,	'Frontline',	'Frontline',	'Frontline',	'0812399123',	'Frontline')
 ON DUPLICATE KEY UPDATE `pengguna_id` = VALUES(`pengguna_id`), `pengguna_username` = VALUES(`pengguna_username`), `pengguna_password` = VALUES(`pengguna_password`), `pengguna_nama` = VALUES(`pengguna_nama`), `pengguna_telp` = VALUES(`pengguna_telp`), `pengguna_level` = VALUES(`pengguna_level`);
 
 DROP TABLE IF EXISTS `tb_Reservasi`;
@@ -90,4 +91,4 @@ INSERT INTO `tb_Tipe_kamar` (`tipe_kamar_id`, `tipe_kamar_nama`) VALUES
 (5,	'VIP')
 ON DUPLICATE KEY UPDATE `tipe_kamar_id` = VALUES(`tipe_kamar_id`), `tipe_kamar_nama` = VALUES(`tipe_kamar_nama`);
 
--- 2020-04-11 13:40:48
+-- 2020-04-11 15:34:48

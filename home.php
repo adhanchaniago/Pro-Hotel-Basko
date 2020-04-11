@@ -7,10 +7,13 @@
         <div class="col-md-12 mb-5">
             <h2>Basko Premier Hotel</h2>
             <hr>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita at iusto sapiente et? Voluptatem repellat aspernatur voluptate? Quia quo dolor, error, perferendis id expedita incidunt voluptatum voluptas atque esse alias?
-                Architecto voluptas dolores repellendus repudiandae mollitia laborum qui deserunt nam pariatur labore accusamus, excepturi soluta voluptates, numquam debitis nostrum aut? Dolor laudantium possimus maxime facere. Id esse aut commodi tempora?
-                Non reiciendis id, quod debitis fuga esse error repudiandae maiores iste ea porro commodi repellendus, impedit suscipit ipsa? Unde neque tenetur itaque qui magnam iure ullam facere cupiditate animi maiores.
+            <p align="justify">
+                Hotel Padang as Premier Basko Hotel, located in West Sumatera Indonesia, is the busiest harbor city on the west coast of Sumatera. When in Padang, choose Premier Basko Hotel as your preferred hotel in the heart of Ranah Minang.
+                <br>
+                <br>
+                A five star hotel in Padang, blending contemporary and modern design, with 180 modern spacious rooms, easy access to Basko Grand Mall, surrounded by government and corporate offices, and twenty minutes away from Minangkabau International Airport.
+                <br>
+
             </p>
         </div>
         <!-- <div class="col-md-4 mb-5">

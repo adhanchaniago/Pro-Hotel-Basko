@@ -24,15 +24,6 @@
                         <?php
                         $dataPenggunas = $db->getAllPengguna();
                         foreach ($dataPenggunas as $no => $dataPengguna) {
-                            // var_dump($dataPengguna);
-                            $level = $dataPengguna->pengguna_level;
-                            if ($level == 1) {
-                                $level = "Admin";
-                            } elseif ($level == 2) {
-                                $level = "Frontliner";
-                            } else {
-                                $level = "Pimpinan";
-                            }
                         ?>
                             <tr>
                                 <td><?= ++$no ?></td>
@@ -40,7 +31,7 @@
                                 <td><?= $dataPengguna->pengguna_password ?></td>
                                 <td><?= $dataPengguna->pengguna_nama ?></td>
                                 <td><?= $dataPengguna->pengguna_telp ?></td>
-                                <td><?= $level ?></td>
+                                <td><?= $dataPengguna->pengguna_level ?></td>
                                 <td>
                                     <a href="index.php?page=module/Pengguna/edit&id=<?= $dataPengguna->pengguna_id ?>" class="btn btn-warning btn-sm">Edit</a>
                                     <a href="index.php?page=module/Pengguna/hapus&id=<?= $dataPengguna->pengguna_id ?>" class="btn btn-danger btn-sm">Hapus</a>

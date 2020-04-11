@@ -1,9 +1,35 @@
 <?php
-// session_start();
+session_start();
 include 'conf.php';
 
 class Db extends Conf
 {
+    public function Login($data)
+    {
+        global $conn;
+        $user  = $data['username'];
+        $pass  = $data['password'];
+
+        $query = "SELECT * FROM tb_Pengguna WHERE pengguna_username = '$user' AND pengguna_password = '$pass' ";
+        $ambil = $conn->query($query);
+        $cek = $ambil->num_rows;
+
+        if ($cek == 1) {
+            $_SESSION['akun'] = $ambil->fetch_object();
+            echo "
+                <script>alert('Berhasil Login');
+                window.location='index.php'</script>
+                ";
+        } else {
+            echo "
+                <script>
+                alert('Gagal Login');
+                window.location='login.php'
+                </script>
+                ";
+        }
+    }
+
     // Pengguna CRUD
     public function getAllPengguna()
     {
@@ -67,7 +93,7 @@ class Db extends Conf
         $query = "UPDATE `tb_Pengguna` SET  `pengguna_username` = '$username',
                                             `pengguna_password` = '$password',
                                             `pengguna_nama`     = '$nama',
-                                            `pengguna_telp`     = '$telp'
+                                            `pengguna_telp`     = '$telp',
                                             `pengguna_level`    = '$level'
                                             WHERE 
                                             `pengguna_id`         = '$id'";
@@ -360,5 +386,46 @@ class Db extends Conf
         $conn->query($query_update_status_reservasi);
 
         return $conn->affected_rows;
+    }
+
+    public function laporanPerhari($hari)
+    {
+        $query = $this->get("   SELECT * FROM tb_Pembayaran 
+                                JOIN tb_Reservasi
+                                ON tb_Pembayaran.reservasi_id =tb_Reservasi.reservasi_id 
+                                JOIN tb_Kamar
+                                ON tb_Reservasi.kamar_id =tb_Kamar.kamar_id 
+                                JOIN tb_Tipe_kamar
+                                ON tb_Kamar.tipe_kamar_id =tb_Tipe_kamar.tipe_kamar_id 
+                                WHERE tb_Pembayaran.pembayaran_tgl = '$hari'");
+        return $query;
+    }
+
+    public function laporanPerbulan($bulan)
+    {
+        $bulan;
+        $query = $this->get("   SELECT * FROM tb_Pembayaran 
+                                JOIN tb_Reservasi
+                                ON tb_Pembayaran.reservasi_id =tb_Reservasi.reservasi_id 
+                                JOIN tb_Kamar
+                                ON tb_Reservasi.kamar_id =tb_Kamar.kamar_id 
+                                JOIN tb_Tipe_kamar
+                                ON tb_Kamar.tipe_kamar_id =tb_Tipe_kamar.tipe_kamar_id 
+                                WHERE tb_Pembayaran.pembayaran_tgl LIKE '%$bulan%'");
+        return $query;
+    }
+
+    public function laporanTahun($tahun)
+    {
+        $tahun;
+        $query = $this->get("   SELECT * FROM tb_Pembayaran 
+                                JOIN tb_Reservasi
+                                ON tb_Pembayaran.reservasi_id =tb_Reservasi.reservasi_id 
+                                JOIN tb_Kamar
+                                ON tb_Reservasi.kamar_id =tb_Kamar.kamar_id 
+                                JOIN tb_Tipe_kamar
+                                ON tb_Kamar.tipe_kamar_id =tb_Tipe_kamar.tipe_kamar_id 
+                                WHERE tb_Pembayaran.pembayaran_tgl LIKE '%$tahun%'");
+        return $query;
     }
 }

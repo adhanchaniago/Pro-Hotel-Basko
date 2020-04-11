@@ -2,5 +2,6 @@
 // session_start();
 session_destroy();
 echo "
-<script>alert('Anda telah Logout');location='../';</script>;
+<script>alert('Anda telah Logout');
+location='login.php';</script>;
 ";

@@ -48,9 +48,9 @@ $dataPengguna = $db->getOnePengguna($id);
                     <div class="form-label-group">
                         <label>Level</label>
                         <select name="level" id="level" class="form-control">
-                            <option value="1">Admin</option>
-                            <option value="2">Frontline</option>
-                            <option value="3">Pimpinan</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Frontline">Frontline</option>
+                            <option value="Pimpinan">Pimpinan</option>
                         </select>
                     </div>
                 </div>

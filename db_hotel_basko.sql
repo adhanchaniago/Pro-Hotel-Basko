@@ -91,4 +91,4 @@ INSERT INTO `tb_Tipe_kamar` (`tipe_kamar_id`, `tipe_kamar_nama`) VALUES
 (5,	'VIP')
 ON DUPLICATE KEY UPDATE `tipe_kamar_id` = VALUES(`tipe_kamar_id`), `tipe_kamar_nama` = VALUES(`tipe_kamar_nama`);
 
--- 2020-04-11 15:34:48
+-- 2020-04-11 15:38:41

@@ -116,10 +116,10 @@ class Db extends Conf
         global $conn;
         $tipe = $data['tipe'];
 
-        $query = "INSERT INTO tb_Tipe_kamar VALUES ('','$tipe')";
+        $query = "INSERT INTO tb_Tipe_kamar ('tipe_kamar_nama') VALUES ('$tipe')";
         $conn->query($query);
-        // echo $query;
-        // exit;
+        echo $query;
+        exit;
         return $conn->affected_rows;
     }
 
@@ -146,7 +146,7 @@ class Db extends Conf
         $tipe = $data['tipe'];
 
 
-        $query = "UPDATE `tb_Tipe_kamar` SET    `tipe_kamar_nama`   = '$tipe'
+        $query = "UPDATE `tb_tipe_kamar` SET    `tipe_kamar_nama`   = '$tipe'
                                                 WHERE
                                                 `tipe_kamar_id`         = '$id'";
         // echo $query;
@@ -391,13 +391,13 @@ class Db extends Conf
     public function laporanPerhari($hari)
     {
         $query = $this->get("   SELECT * FROM tb_Pembayaran 
-                                JOIN tb_Reservasi
-                                ON tb_Pembayaran.reservasi_id =tb_Reservasi.reservasi_id 
-                                JOIN tb_Kamar
-                                ON tb_Reservasi.kamar_id =tb_Kamar.kamar_id 
-                                JOIN tb_Tipe_kamar
-                                ON tb_Kamar.tipe_kamar_id =tb_Tipe_kamar.tipe_kamar_id 
-                                WHERE tb_Pembayaran.pembayaran_tgl = '$hari'");
+        JOIN tb_Reservasi
+        ON tb_Pembayaran.reservasi_id =tb_Reservasi.reservasi_id 
+        JOIN tb_Kamar
+        ON tb_Reservasi.kamar_id =tb_Kamar.kamar_id 
+        JOIN tb_Tipe_kamar
+        ON tb_Kamar.tipe_kamar_id =tb_Tipe_kamar.tipe_kamar_id 
+        WHERE tb_Pembayaran.pembayaran_tgl = '$hari' ");
         return $query;
     }
 

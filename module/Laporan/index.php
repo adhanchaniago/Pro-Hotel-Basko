@@ -7,11 +7,11 @@
             <hr>
             <div class="row">
                 <div class="col-md-4">
-                    <form target="_blank" target="_blank" action="module/Laporan/perhari.php" method="POST">
+                    <form target="_blank" action="module/Laporan/perhari.php" method="POST">
                         <div class="form-group">
                             <div class="form-label-group">
                                 <label>Laporan Perhari</label>
-                                <input name="hari" value="<?php echo date('Y-m-d') ?>" type="date" class="form-control">
+                                <input name="hari" value="" type="date" class="form-control">
                             </div>
                         </div>
                         <button name="cetakHari" class="btn btn-success">Cetak</button>

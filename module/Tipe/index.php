@@ -6,7 +6,7 @@
             <h2>Data Tipe Kamar</h2>
             <hr>
             <div class="table-responsive">
-                <a href="?page=module/Tipe/tambah" class="btn btn-primary ">Tambah Data</a>
+                <!-- <a href="?page=module/Tipe/tambah" class="btn btn-primary ">Tambah Data</a> -->
                 <br><br>
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>

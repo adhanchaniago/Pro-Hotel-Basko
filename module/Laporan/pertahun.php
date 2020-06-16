@@ -1,6 +1,7 @@
 <?php
 include '../../assets/model/db.php';
 include '../../assets/libs/helper/helper.php';
+error_reporting(0);
 $db = new Db();
 $tahun = $_POST['tahun'];
 $data = $db->laporanPerbulan($tahun);

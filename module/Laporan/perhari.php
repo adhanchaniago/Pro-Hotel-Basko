@@ -1,6 +1,7 @@
 <?php
 include '../../assets/model/db.php';
 include '../../assets/libs/helper/helper.php';
+error_reporting(0);
 $db = new Db();
 $hari = $_POST['hari'];
 $data = $db->laporanPerhari($hari);

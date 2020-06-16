@@ -1,4 +1,4 @@
-<header class="bg-secondary py-5 mb-5">
+<header class="bg-secondary py-5 mb-5" style="background-image: url('assets/basko.jpg');">
     <div class="container h-100">
         <div class="row h-100 align-items-center">
             <div class="col-lg-12">

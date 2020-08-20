@@ -10,7 +10,7 @@ class Db extends Conf
         $user  = $data['username'];
         $pass  = $data['password'];
 
-        $query = "SELECT * FROM tb_pengguna WHERE pengguna_username = '$user' AND pengguna_password = '$pass' ";
+        $query = "SELECT * FROM tb_Pengguna WHERE pengguna_username = '$user' AND pengguna_password = '$pass' ";
         $ambil = $conn->query($query);
         $cek = $ambil->num_rows;
 
@@ -33,7 +33,7 @@ class Db extends Conf
     // Pengguna CRUD
     public function getAllPengguna()
     {
-        $query = $this->get("SELECT * FROM tb_pengguna");
+        $query = $this->get("SELECT * FROM tb_Pengguna");
         return $query;
     }
 
@@ -47,7 +47,7 @@ class Db extends Conf
         $telp     = $data['telp'];
         $level    = $data['level'];
 
-        $query = "INSERT INTO tb_pengguna ( pengguna_username,
+        $query = "INSERT INTO tb_Pengguna ( pengguna_username,
                                             pengguna_password,
                                             pengguna_nama,
                                             pengguna_telp,
@@ -67,7 +67,7 @@ class Db extends Conf
     public function dPengguna($id)
     {
         global $conn;
-        $query = "DELETE FROM tb_pengguna WHERE Pengguna_id = '$id'";
+        $query = "DELETE FROM tb_Pengguna WHERE Pengguna_id = '$id'";
         $conn->query($query);
 
         return $conn->affected_rows;
@@ -75,7 +75,7 @@ class Db extends Conf
 
     public function getOnePengguna($id)
     {
-        $query = $this->get("SELECT * FROM tb_pengguna WHERE Pengguna_id = '$id'")[0];
+        $query = $this->get("SELECT * FROM tb_Pengguna WHERE Pengguna_id = '$id'")[0];
         return $query;
     }
 
@@ -90,7 +90,7 @@ class Db extends Conf
         $telp     = $data['telp'];
         $level    = $data['level'];
 
-        $query = "UPDATE `tb_pengguna` SET  `pengguna_username` = '$username',
+        $query = "UPDATE `tb_Pengguna` SET  `pengguna_username` = '$username',
                                             `pengguna_password` = '$password',
                                             `pengguna_nama`     = '$nama',
                                             `pengguna_telp`     = '$telp',
@@ -107,7 +107,7 @@ class Db extends Conf
     // Tipe Kamar CRUD
     public function getAllTipeKamar()
     {
-        $query = $this->get("SELECT * FROM tb_tipe_kamar");
+        $query = $this->get("SELECT * FROM tb_Tipe_kamar");
         return $query;
     }
 
@@ -116,7 +116,7 @@ class Db extends Conf
         global $conn;
         $tipe = $data['tipe'];
 
-        $query = "INSERT INTO tb_tipe_kamar ('tipe_kamar_nama') VALUES ('$tipe')";
+        $query = "INSERT INTO tb_Tipe_kamar ('tipe_kamar_nama') VALUES ('$tipe')";
         $conn->query($query);
         echo $query;
         exit;
@@ -126,7 +126,7 @@ class Db extends Conf
     public function dTipeKamar($id)
     {
         global $conn;
-        $query = "DELETE FROM tb_tipe_kamar WHERE Tipe_Kamar_id = '$id'";
+        $query = "DELETE FROM tb_Tipe_kamar WHERE Tipe_Kamar_id = '$id'";
         $conn->query($query);
 
         return $conn->affected_rows;
@@ -134,7 +134,7 @@ class Db extends Conf
 
     public function getOneTipeKamar($id)
     {
-        $query = $this->get("SELECT * FROM tb_tipe_kamar WHERE Tipe_kamar_id = '$id'")[0];
+        $query = $this->get("SELECT * FROM tb_Tipe_kamar WHERE Tipe_kamar_id = '$id'")[0];
         return $query;
     }
 
@@ -146,7 +146,7 @@ class Db extends Conf
         $tipe = $data['tipe'];
 
 
-        $query = "UPDATE `tb_tipe_kamar` SET    `tipe_kamar_nama`   = '$tipe'
+        $query = "UPDATE `tb_Tipe_kamar` SET    `tipe_kamar_nama`   = '$tipe'
                                                 WHERE
                                                 `tipe_kamar_id`         = '$id'";
         // echo $query;
@@ -159,15 +159,15 @@ class Db extends Conf
     // Kamar CRUD
     public function getAllKamar()
     {
-        $query = $this->get("SELECT * FROM tb_kamar LEFT JOIN tb_tipe_kamar ON tb_kamar.tipe_kamar_id = tb_tipe_kamar.tipe_kamar_id ");
+        $query = $this->get("SELECT * FROM tb_Kamar LEFT JOIN tb_Tipe_kamar ON tb_Kamar.tipe_kamar_id = tb_Tipe_kamar.tipe_kamar_id ");
         return $query;
     }
     public function getAllKamarTersedia()
     {
-        $query = $this->get("   SELECT * FROM tb_kamar 
-                                LEFT JOIN tb_tipe_kamar 
-                                ON tb_kamar.tipe_kamar_id = tb_tipe_kamar.tipe_kamar_id
-                                WHERE tb_kamar.kamar_status = 'Tersedia' ORDER BY tb_tipe_kamar.tipe_kamar_nama ASC ");
+        $query = $this->get("   SELECT * FROM tb_Kamar 
+                                LEFT JOIN tb_Tipe_kamar 
+                                ON tb_Kamar.tipe_kamar_id = tb_Tipe_kamar.tipe_kamar_id
+                                WHERE tb_Kamar.kamar_status = 'Tersedia' ORDER BY tb_Tipe_kamar.tipe_kamar_nama ASC ");
         return $query;
     }
 
@@ -180,7 +180,7 @@ class Db extends Conf
         $fasilitas = $data['fasilitas'];
         $status    = "Tersedia";
 
-        $query = "INSERT INTO `tb_kamar`(   `tipe_kamar_id`, 
+        $query = "INSERT INTO `tb_Kamar`(   `tipe_kamar_id`, 
                                             `kamar_no`, 
                                             `kamar_harga`, 
                                             `kamar_fasilitas`, 
@@ -200,7 +200,7 @@ class Db extends Conf
     public function dKamar($id)
     {
         global $conn;
-        $query = "DELETE FROM tb_kamar WHERE kamar_id = '$id'";
+        $query = "DELETE FROM tb_Kamar WHERE kamar_id = '$id'";
         $conn->query($query);
 
         return $conn->affected_rows;
@@ -208,7 +208,7 @@ class Db extends Conf
 
     public function getOneKamar($id)
     {
-        $query = $this->get("SELECT * FROM tb_kamar WHERE kamar_id = '$id'")[0];
+        $query = $this->get("SELECT * FROM tb_Kamar WHERE kamar_id = '$id'")[0];
         return $query;
     }
 
@@ -224,7 +224,7 @@ class Db extends Conf
         $status    = $data['status'];
 
 
-        $query = "UPDATE `tb_kamar` SET `tipe_kamar_id`='$tipe',
+        $query = "UPDATE `tb_Kamar` SET `tipe_kamar_id`='$tipe',
                                         `kamar_no`='$nomor',
                                         `kamar_harga`='$harga',
                                         `kamar_fasilitas`='$fasilitas',
@@ -241,11 +241,11 @@ class Db extends Conf
     // Reservasi CRUD
     public function getAllReservasi()
     {
-        $query = $this->get("   SELECT * FROM tb_reservasi 
-                                LEFT JOIN tb_kamar 
-                                ON tb_reservasi.kamar_id=tb_kamar.kamar_id
-                                LEFT JOIN tb_tipe_kamar 
-                                ON tb_tipe_kamar.tipe_kamar_id=tb_kamar.tipe_kamar_id");
+        $query = $this->get("   SELECT * FROM tb_Reservasi 
+                                LEFT JOIN tb_Kamar 
+                                ON tb_Reservasi.kamar_id=tb_Kamar.kamar_id
+                                LEFT JOIN tb_Tipe_kamar 
+                                ON tb_Tipe_kamar.tipe_kamar_id=tb_Kamar.tipe_kamar_id");
         return $query;
     }
 
@@ -260,7 +260,7 @@ class Db extends Conf
         $alamat   = $data['alamat'];
         $status   = "Booking";
 
-        $queryReservasi = "INSERT INTO `tb_reservasi`(   `kamar_id`, 
+        $queryReservasi = "INSERT INTO `tb_Reservasi`(   `kamar_id`, 
                                                 `reservasi_nama`, 
                                                 `reservasi_tlp`, 
                                                 `reservasi_alamat`, 
@@ -277,7 +277,7 @@ class Db extends Conf
                                                 '$status'
                                                 )";
 
-        $queryKamar = "UPDATE `tb_kamar` SET `kamar_status`= 'Berisi' WHERE `kamar_id`='$kamar'";
+        $queryKamar = "UPDATE `tb_Kamar` SET `kamar_status`= 'Berisi' WHERE `kamar_id`='$kamar'";
         $conn->query($queryKamar);
         $conn->query($queryReservasi);
         // echo $queryKamar . "<br>";
@@ -289,11 +289,11 @@ class Db extends Conf
     public function dReservasi($id)
     {
         global $conn;
-        $query = "DELETE FROM tb_reservasi WHERE reservasi_id = '$id'";
+        $query = "DELETE FROM tb_Reservasi WHERE reservasi_id = '$id'";
         $ambil_kamar = $this->getOneReservasi($id);
         $pilih_kamar = $ambil_kamar->kamar_id;
 
-        $query_update_status_kamar = "  UPDATE `tb_kamar`
+        $query_update_status_kamar = "  UPDATE `tb_Kamar`
                                         SET kamar_status = 'Tersedia'
                                         WHERE kamar_id = '$pilih_kamar'
                                     ";
@@ -305,9 +305,9 @@ class Db extends Conf
 
     public function getOneReservasi($id)
     {
-        $query = $this->get("   SELECT * FROM tb_reservasi 
-                                    LEFT JOIN tb_kamar ON tb_reservasi.kamar_id=tb_kamar.kamar_id 
-                                    LEFT JOIN tb_tipe_kamar ON tb_kamar.tipe_kamar_id=tb_tipe_kamar.tipe_kamar_id 
+        $query = $this->get("   SELECT * FROM tb_Reservasi 
+                                    LEFT JOIN tb_Kamar ON tb_Reservasi.kamar_id=tb_Kamar.kamar_id 
+                                    LEFT JOIN tb_Tipe_kamar ON tb_Kamar.tipe_kamar_id=tb_Tipe_kamar.tipe_kamar_id 
                                     WHERE reservasi_id = '$id'")[0];
         return $query;
     }
@@ -325,12 +325,12 @@ class Db extends Conf
         $ambil_kamar = $this->getOneReservasi($id);
         $pilih_kamar = $ambil_kamar->kamar_id;
 
-        $query_update_status_kamar = "  UPDATE `tb_kamar`
+        $query_update_status_kamar = "  UPDATE `tb_Kamar`
                                             SET kamar_status = 'Tersedia'
                                             WHERE kamar_id = '$pilih_kamar'
                                         ";
 
-        $query_tambah_pembayaran = "INSERT INTO `tb_pembayaran` ( `reservasi_id`,
+        $query_tambah_pembayaran = "INSERT INTO `tb_Pembayaran` ( `reservasi_id`,
                                                     `pembayaran_tgl`,
                                                     `pembayaran_nominal`,
                                                     `pembayaran_uang_bayar`,
@@ -342,7 +342,7 @@ class Db extends Conf
                                                     '$uang_bayar',
                                                     '$uang_kembali')";
 
-        $query_update_status_reservasi = "  UPDATE `tb_reservasi`
+        $query_update_status_reservasi = "  UPDATE `tb_Reservasi`
                                                 SET reservasi_status = 'Selesai'
                                                 WHERE reservasi_id = '$id'
                                                 ";
@@ -361,7 +361,7 @@ class Db extends Conf
         $id           = $data['id'];
         $checkout     = $data['checkout'];
 
-        $query_update_checkout_reservasi = "    UPDATE `tb_reservasi`
+        $query_update_checkout_reservasi = "    UPDATE `tb_Reservasi`
                                                     SET reservasi_keluar = '$checkout'
                                                     WHERE reservasi_id = '$id'
                                                     ";
@@ -375,9 +375,9 @@ class Db extends Conf
     {
         global $conn;
 
-        $id           = $data['id'];
+        $id           = $_GET['id'];
 
-        $query_update_status_reservasi = "  UPDATE `tb_reservasi`
+        $query_update_status_reservasi = "  UPDATE `tb_Reservasi`
                                                 SET reservasi_status = 'Checkin'
                                                 WHERE reservasi_id = '$id'
                                                 ";
@@ -390,42 +390,42 @@ class Db extends Conf
 
     public function laporanPerhari($hari)
     {
-        $query = $this->get("   SELECT * FROM tb_pembayaran 
-        JOIN tb_reservasi
-        ON tb_pembayaran.reservasi_id =tb_reservasi.reservasi_id 
-        JOIN tb_kamar
-        ON tb_reservasi.kamar_id =tb_kamar.kamar_id 
-        JOIN tb_tipe_kamar
-        ON tb_kamar.tipe_kamar_id =tb_tipe_kamar.tipe_kamar_id 
-        WHERE tb_pembayaran.pembayaran_tgl = '$hari' ");
+        $query = $this->get("   SELECT * FROM tb_Pembayaran 
+        JOIN tb_Reservasi
+        ON tb_Pembayaran.reservasi_id =tb_Reservasi.reservasi_id 
+        JOIN tb_Kamar
+        ON tb_Reservasi.kamar_id =tb_Kamar.kamar_id 
+        JOIN tb_Tipe_kamar
+        ON tb_Kamar.tipe_kamar_id =tb_Tipe_kamar.tipe_kamar_id 
+        WHERE tb_Pembayaran.pembayaran_tgl = '$hari' ");
         return $query;
     }
 
     public function laporanPerbulan($bulan)
     {
         $bulan;
-        $query = $this->get("   SELECT * FROM tb_pembayaran 
-                                JOIN tb_reservasi
-                                ON tb_pembayaran.reservasi_id =tb_reservasi.reservasi_id 
-                                JOIN tb_kamar
-                                ON tb_reservasi.kamar_id =tb_kamar.kamar_id 
-                                JOIN tb_tipe_kamar
-                                ON tb_kamar.tipe_kamar_id =tb_tipe_kamar.tipe_kamar_id 
-                                WHERE tb_pembayaran.pembayaran_tgl LIKE '%$bulan%'");
+        $query = $this->get("   SELECT * FROM tb_Pembayaran 
+                                JOIN tb_Reservasi
+                                ON tb_Pembayaran.reservasi_id =tb_Reservasi.reservasi_id 
+                                JOIN tb_Kamar
+                                ON tb_Reservasi.kamar_id =tb_Kamar.kamar_id 
+                                JOIN tb_Tipe_kamar
+                                ON tb_Kamar.tipe_kamar_id =tb_Tipe_kamar.tipe_kamar_id 
+                                WHERE tb_Pembayaran.pembayaran_tgl LIKE '%$bulan%'");
         return $query;
     }
 
     public function laporanTahun($tahun)
     {
         $tahun;
-        $query = $this->get("   SELECT * FROM tb_pembayaran 
-                                JOIN tb_reservasi
-                                ON tb_pembayaran.reservasi_id =tb_reservasi.reservasi_id 
-                                JOIN tb_kamar
-                                ON tb_reservasi.kamar_id =tb_kamar.kamar_id 
-                                JOIN tb_tipe_kamar
-                                ON tb_kamar.tipe_kamar_id =tb_tipe_kamar.tipe_kamar_id 
-                                WHERE tb_pembayaran.pembayaran_tgl LIKE '%$tahun%'");
+        $query = $this->get("   SELECT * FROM tb_Pembayaran 
+                                JOIN tb_Reservasi
+                                ON tb_Pembayaran.reservasi_id =tb_Reservasi.reservasi_id 
+                                JOIN tb_Kamar
+                                ON tb_Reservasi.kamar_id =tb_Kamar.kamar_id 
+                                JOIN tb_Tipe_kamar
+                                ON tb_Kamar.tipe_kamar_id =tb_Tipe_kamar.tipe_kamar_id 
+                                WHERE tb_Pembayaran.pembayaran_tgl LIKE '%$tahun%'");
         return $query;
     }
 }

@@ -1,5 +1,5 @@
 <?php
-// error_reporting(0);
+error_reporting(0);
 $conn = mysqli_connect('localhost', 'root', '', 'db_basko_hotel');
 // Check connection
 if ($conn->connect_errno) {

@@ -146,7 +146,7 @@ class Db extends Conf
         $tipe = $data['tipe'];
 
 
-        $query = "UPDATE `tb_tipe_kamar` SET    `tipe_kamar_nama`   = '$tipe'
+        $query = "UPDATE `tb_Tipe_kamar` SET    `tipe_kamar_nama`   = '$tipe'
                                                 WHERE
                                                 `tipe_kamar_id`         = '$id'";
         // echo $query;
@@ -375,7 +375,7 @@ class Db extends Conf
     {
         global $conn;
 
-        $id           = $data['id'];
+        $id           = $_GET['id'];
 
         $query_update_status_reservasi = "  UPDATE `tb_Reservasi`
                                                 SET reservasi_status = 'Checkin'
